@@ -1,0 +1,259 @@
+html {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+ul,
+ul li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+}
+
+.container {
+  max-width: 750px;
+  min-height: 710px;
+  margin: 0 auto;
+}
+
+.header {
+  max-width: 750px;
+  min-height: 135px;
+  padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.title_header {
+  display: flex;
+  justify-content: center;
+  color: var(--black, #252525);
+  font-family: Kanit;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin: 0;
+  margin-bottom: 18px;
+}
+
+.setting_note {
+  display: flex;
+  justify-content: space-between;
+  max-width: 750px;
+  max-height: 38px;
+}
+
+.input_search {
+  width: 595px;
+  min-height: 38px;
+  border-radius: 5px;
+  border: 1px solid var(--purple, #6c63ff);
+}
+
+.setting_note {
+  position: relative;
+}
+
+.btn-search {
+  position: absolute;
+  background: white;
+  border: none;
+  left: 560px;
+  top: 7px;
+  bottom: 4px;
+  padding: 0;
+}
+
+.dropdown {
+  max-width: 85px;
+  min-height: 38px;
+  padding: 10px;
+  border-radius: 5px;
+  background: var(--purple, #6c63ff);
+  color: var(--white, #f7f7f7);
+  font-family: Kanit;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%; /* 18px */
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.theme_btn {
+  background-color: white;
+  border: none;
+  padding: 0;
+  max-width: 38px;
+  min-height: 38px;
+}
+
+.main {
+  position: relative;
+  width: 750px;
+  height: 575px;
+  padding: 30px 115px 0 115px;
+}
+
+.list {
+  max-width: 520px;
+  min-height: 545px;
+}
+
+.note {
+  display: flex;
+  width: 525px;
+  max-height: 26px;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+
+.checkbox_note {
+  width: 26px;
+  min-height: 26px;
+  border-radius: 2px;
+  border: 1px solid var(--purple, #6c63ff);
+  background: var(--purple, #6c63ff);
+  cursor: pointer;
+}
+
+.text_note {
+  display: inline-block;
+  width: 420px;
+  height: 20px;
+  margin: 0;
+  color: var(--black, #252525);
+  font-family: Kanit;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%; /* 20px */
+  text-transform: uppercase;
+}
+
+.btns-note {
+  display: flex;
+  width: 62px;
+  height: 18px;
+  justify-content: space-around;
+}
+
+.btn_change {
+  background-color: white;
+  border: none;
+  background-image: url("../img/change_img.svg");
+  width: 18px;
+  height: 18px;
+}
+
+.btn_deleted {
+  background-color: white;
+  border: none;
+  background-image: url("../img/deleted_img.svg");
+  width: 18px;
+  height: 18px;
+}
+
+.add-btn {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-image: url("../img/add_btn.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  background-color: white;
+  padding: 0;
+  bottom: 120px;
+  right: 15px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: flex-end;
+  border: none;
+}
+
+.modal-title {
+  color: var(--black, #252525);
+  font-family: Kanit;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%; /* 24px */
+  text-transform: uppercase;
+  padding-right: 140px;
+}
+
+.modal-header .btn-close {
+  padding: 0;
+  margin: 0;
+}
+
+.modal_input {
+  width: 440px;
+  height: 38px;
+  padding: 8px 16px;
+  border-radius: 5px;
+  border: 1px solid var(--purple, #6c63ff);
+}
+
+.modal_input::placeholder {
+  color: #c3c1e5;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+  border: none;
+}
+
+.btn-primary {
+  padding: 10px 22px;
+  border-radius: 5px;
+  background: var(--purple, #6c63ff);
+  color: var(--white, #f7f7f7);
+  font-family: Kanit;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%; /* 18px */
+  text-transform: uppercase;
+}
+
+.btn-secondary {
+  padding: 10px 22px;
+  border-radius: 5px;
+  /* border: 1px solid var(--purple, #6C63FF); */
+  background: white;
+  color: #6c63ff;
+  border-radius: 5px;
+  border: 1px solid var(--purple, #6c63ff);
+
+  color: var(--purple, #6c63ff);
+  font-family: Kanit;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%; /* 18px */
+  text-transform: uppercase;
+}
