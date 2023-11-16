@@ -20,15 +20,17 @@
         <h1 class="title_header">TODO LIST</h1>
 
         <div class="setting_note">
-          <input
-            type="text"
-            id="input_search"
-            class="input_search"
-            placeholder="Search note..."
-          />
-          <button class="btn-search">
-            <img src="./img/btn-search.svg" alt="search" />
-          </button>
+          <div class="wrapper">
+            <input
+              type="text"
+              id="input_search"
+              class="input_search"
+              placeholder="Search note..."
+            />
+            <button class="btn-search">
+              <img src="./img/btn-search.svg" alt="search" />
+            </button>
+          </div>
           <select name="dropdown" id="dropdown" class="dropdown">
             <option value="all">all</option>
             <option value="Complete">Complete</option>
@@ -40,18 +42,18 @@
         </div>
       </header>
       <main class="main">
-        <div class="list">
-          <div class="note">
+        <ul class="list">
+          <li class="note">
             <input type="checkbox" class="checkbox_note" />
             <h2 class="text_note">Note #1</h2>
             <span class="btns-note">
               <button class="btn_change"></button>
               <button class="btn_deleted"></button>
             </span>
-          </div>
-        </div>
+          </li>
+        </ul>
         <button class="add-btn" id="btn_add"></button>
-        <div class="modal" tabindex="-1">
+        <div id="modalInput" class="modal" tabindex="-1">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -66,6 +68,7 @@
               </div>
               <div class="modal-body">
                 <input
+                  id="modalInput"
                   type="text"
                   name=""
                   class="modal_input"
@@ -81,7 +84,9 @@
                 >
                   Cancel
                 </button>
-                <button type="button" class="btn btn-primary">Apply</button>
+                <button id="btnApply" type="button" class="btn btn-primary">
+                  Apply
+                </button>
               </div>
             </div>
           </div>
