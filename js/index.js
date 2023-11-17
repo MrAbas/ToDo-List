@@ -16,9 +16,31 @@ btnSecondary.onclick = function () {
   modal.style.display = "none";
 };
 
+const onDelete = (id) => {
+  const list_item = document.getElementById(id);
+  list_item.remove();
+};
+
 btnApply.onclick = function () {
+  /* function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+  const newId = getRandomInt(10000); */
+
   const modalInputValue = document.getElementById("modalInput").value;
-  console.log(modalInputValue);
+  const list = document.getElementById("list");
+
+  list.insertAdjacentHTML(
+    "beforeend",
+    `<li id=list_item class="note">
+    <input type="checkbox" class="checkbox_note" />
+    <h2 class="text_note">${modalInputValue}</h2>
+    <span class="btns-note">
+      <button class="btn_change"></button>
+      <button class="btn_deleted" onclick="onDelete('list_item')"></button>
+    </span>
+  </li> `
+  );
 
   modal.style.display = "none";
   document.getElementById("modalInput").value = "";

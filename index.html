@@ -42,18 +42,18 @@
         </div>
       </header>
       <main class="main">
-        <ul class="list">
-          <li class="note">
+        <ul id="list" class="list">
+          <!-- <li id=list_item class="note">
             <input type="checkbox" class="checkbox_note" />
             <h2 class="text_note">Note #1</h2>
             <span class="btns-note">
               <button class="btn_change"></button>
               <button class="btn_deleted"></button>
             </span>
-          </li>
+          </li> -->
         </ul>
         <button class="add-btn" id="btn_add"></button>
-        <div id="modalInput" class="modal" tabindex="-1">
+        <div class="modal" tabindex="-1">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -73,6 +73,7 @@
                   name=""
                   class="modal_input"
                   placeholder="Input your note..."
+                  autocomplete="off"
                 />
               </div>
               <div class="modal-footer">
