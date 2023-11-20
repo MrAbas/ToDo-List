@@ -2,22 +2,22 @@ const modal = document.querySelector(".modal");
 const btnAdd = document.getElementById("btn_add");
 const btnClose = document.getElementById("btn_close");
 const btnSecondary = document.getElementById("btn_secondary");
-const modalInput = document.getElementById("modalInput"); //del
-const btnApply = document.getElementById("btnApply"); //del
+const modalInput = document.getElementById("modalInput");
+const btnApply = document.getElementById("btnApply");
+const list = document.getElementById("list");
 
-if (localStorage.todo) {
-  let localStorageItems = JSON.parse(localStorage.todo);
-  const list = document.getElementById("list");
+if (localStorage.toDoList) {
+  let localStorageItems = JSON.parse(localStorage.toDoList);
 
-  for (let i = 0; i < localStorageItems.length; i++) {
+  for (i = 0; i < localStorageItems.length; i++) {
     list.insertAdjacentHTML(
       "beforeend",
-      `<li id='${localStorageItems[i].id}'  class="note">
+      `<li id='${localStorageItems[i].id}' class="note">
     <input type="checkbox" class="checkbox_note" />
-    <h2 class="text_note">${localStorageItems[i].text}</h2>
+    <h2 class="text_note">${localStorageItems[i].value}</h2>
     <span class="btns-note">
       <button class="btn_change"></button>
-      <button class="btn_deleted" onclick="onDelete('${localStorageItems[i].id}')" ></button>
+      <button class="btn_deleted" onclick="onDelete('${localStorageItems[i].id}')"></button>
     </span>
   </li>`
     );
@@ -47,7 +47,6 @@ btnApply.onclick = function () {
   }
   const newId = getRandomInt(10000);
   const modalInputValue = modalInput.value;
-  const list = document.getElementById("list");
 
   list.insertAdjacentHTML(
     "beforeend",
@@ -64,12 +63,14 @@ btnApply.onclick = function () {
   modal.style.display = "none";
   modalInput.value = "";
 
-  let localStorageItems = [];
-  if (localStorageItems?.length) {
-    localStorageItems.push({ id: newId, text: modalInputValue });
-    localStorage.todo = JSON.stringify(localStorageItems);
+  if (localStorage.toDoList) {
+    let toDo = JSON.parse(localStorage.toDoList);
+    toDo.push({ id: newId, value: modalInputValue });
+    localStorage.toDoList = JSON.stringify(toDo);
   } else {
-    localStorage.todo = JSON.stringify([{ id: newId, text: modalInputValue }]);
+    localStorage.toDoList = JSON.stringify([
+      { id: newId, value: modalInputValue },
+    ]);
   }
 };
 
