@@ -39,6 +39,10 @@ btnSecondary.onclick = function () {
 const onDelete = (id) => {
   const itemRemove = document.getElementById(id);
   itemRemove.remove();
+  const newItems = JSON.parse(localStorage.toDoList).filter((a) => {
+    return a.id !== Number(id);
+  });
+  localStorage.toDoList = JSON.stringify(newItems);
 };
 
 btnApply.onclick = function () {
@@ -55,7 +59,7 @@ btnApply.onclick = function () {
   <h2 class="text_note">${modalInputValue}</h2>
   <span class="btns-note">
     <button class="btn_change"></button>
-    <button class="btn_deleted" onclick="onDelete('${newId}')"></button>
+    <button class="btn_deleted" onclick="onDelete(${newId})"></button>
   </span>
 </li>`
   );
