@@ -8,7 +8,6 @@ const list = document.getElementById("list");
 
 if (localStorage.toDoList) {
   let localStorageItems = JSON.parse(localStorage.toDoList);
-
   for (let i = 0; i < localStorageItems.length; i++) {
     list.insertAdjacentHTML(
       "beforeend",
@@ -17,7 +16,7 @@ if (localStorage.toDoList) {
     <h2 class="text_note">${localStorageItems[i].value}</h2>
     <span class="btns-note">
       <button class="btn_change"></button>
-      <button class="btn_deleted" onclick = onDelete(${localStorageItems[i].id})></button>
+      <button class="btn_deleted" onclick = "onDelete(${localStorageItems[i].id})"></button>
     </span>
   </li>`
     );
@@ -35,11 +34,10 @@ btnClose.onclick = function () {
 btnSecondary.onclick = function () {
   modal.style.display = "none";
 };
-
 const onDelete = (id) => {
-  const itemRemove = document.getElementById(id);
+  //разобрать ещё раз!!!
+  const itemRemove = document.getElementById(id); // id ?
   itemRemove.remove();
-
   const newItems = JSON.parse(localStorage.toDoList).filter((a) => {
     return a.id !== Number(id);
   });
@@ -60,13 +58,13 @@ btnApply.onclick = function () {
   <h2 class="text_note">${modalInputValue}</h2>
   <span class="btns-note">
     <button class="btn_change"></button>
-    <button class="btn_deleted" onclick = onDelete(${newId})></button>
+    <button class="btn_deleted" onclick = "onDelete(${newId})"></button>
   </span>
 </li>`
   );
 
-  modalInput.value = "";
   modal.style.display = "none";
+  modalInput.value = ""; //спросить !!! modalInputValue не работает почему ?
 
   if (localStorage.toDoList) {
     let toDo = JSON.parse(localStorage.toDoList);
