@@ -9,15 +9,15 @@ const list = document.getElementById("list");
 if (localStorage.toDoList) {
   let localStorageItems = JSON.parse(localStorage.toDoList);
 
-  for (i = 0; i < localStorageItems.length; i++) {
+  for (let i = 0; i < localStorageItems.length; i++) {
     list.insertAdjacentHTML(
       "beforeend",
-      `<li id='${localStorageItems[i].id}' class="note">
+      `<li id=${localStorageItems[i].id} class="note">
     <input type="checkbox" class="checkbox_note" />
     <h2 class="text_note">${localStorageItems[i].value}</h2>
     <span class="btns-note">
       <button class="btn_change"></button>
-      <button class="btn_deleted" onclick="onDelete('${localStorageItems[i].id}')"></button>
+      <button class="btn_deleted" onclick = onDelete(${localStorageItems[i].id})></button>
     </span>
   </li>`
     );
@@ -39,6 +39,7 @@ btnSecondary.onclick = function () {
 const onDelete = (id) => {
   const itemRemove = document.getElementById(id);
   itemRemove.remove();
+
   const newItems = JSON.parse(localStorage.toDoList).filter((a) => {
     return a.id !== Number(id);
   });
@@ -54,18 +55,18 @@ btnApply.onclick = function () {
 
   list.insertAdjacentHTML(
     "beforeend",
-    `<li id='${newId}' class="note">
+    `<li id=${newId} class="note">
   <input type="checkbox" class="checkbox_note" />
   <h2 class="text_note">${modalInputValue}</h2>
   <span class="btns-note">
     <button class="btn_change"></button>
-    <button class="btn_deleted" onclick="onDelete(${newId})"></button>
+    <button class="btn_deleted" onclick = onDelete(${newId})></button>
   </span>
 </li>`
   );
 
-  modal.style.display = "none";
   modalInput.value = "";
+  modal.style.display = "none";
 
   if (localStorage.toDoList) {
     let toDo = JSON.parse(localStorage.toDoList);
