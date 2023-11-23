@@ -5,6 +5,7 @@ const btnSecondary = document.getElementById("btn_secondary");
 const modalInput = document.getElementById("modalInput");
 const btnApply = document.getElementById("btnApply");
 const list = document.getElementById("list");
+const btnSearch = document.getElementById("btnSearch");
 
 if (localStorage.toDoList) {
   let localStorageItems = JSON.parse(localStorage.toDoList);
@@ -34,9 +35,9 @@ btnClose.onclick = function () {
 btnSecondary.onclick = function () {
   modal.style.display = "none";
 };
+
 const onDelete = (id) => {
-  //разобрать ещё раз!!!
-  const itemRemove = document.getElementById(id); // id ?
+  const itemRemove = document.getElementById(id);
   itemRemove.remove();
   const newItems = JSON.parse(localStorage.toDoList).filter((a) => {
     return a.id !== Number(id);
@@ -64,7 +65,7 @@ btnApply.onclick = function () {
   );
 
   modal.style.display = "none";
-  modalInput.value = ""; //спросить !!! modalInputValue не работает почему ?
+  modalInput.value = "";
 
   if (localStorage.toDoList) {
     let toDo = JSON.parse(localStorage.toDoList);
@@ -82,3 +83,15 @@ btnAdd.addEventListener("click", openInput);
 function openInput() {
   modalInput.focus();
 }
+
+btnSearch.onclick = function () {
+  const inputSearch = document.getElementById("input_search");
+  inputSearchValue = inputSearch.value;
+  const toDoList = JSON.parse(localStorage.toDoList);
+
+  const filterList = toDoList.filter((toDoList) => {
+    console.log(toDo);
+    return toDoList.includes(inputSearchValue);
+  });
+  console.log(filterList);
+};
