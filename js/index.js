@@ -84,13 +84,11 @@ function openInput() {
   modalInput.focus();
 }
 
-inputSearch.addEventListener =
-  ("input",
-  function (e) {
-    console.log(e);
-    inputSearchValue = inputSearch.value;
-    const toDoList = JSON.parse(localStorage.toDoList); //[{},{}]
-    const filterList = toDoList.filter((toDoList) => {
-      return toDoList === toDoList.value;
-    });
+inputSearch.addEventListener("input", function (e) {
+  console.log(e);
+  inputSearchValue = inputSearch.value;
+  const toDoList = JSON.parse(localStorage.toDoList); //[{},{}]
+  const filterList = toDoList.filter((toDoList) => {
+    return toDoList === toDoList.value;
   });
+});
