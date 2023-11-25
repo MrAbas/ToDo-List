@@ -91,4 +91,5 @@ inputSearch.addEventListener("input", function (e) {
   const filterList = toDoList.filter((toDoList) => {
     return toDoList === toDoList.value;
   });
+  console.log(filterList);
 });
