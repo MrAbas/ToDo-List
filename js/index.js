@@ -5,7 +5,7 @@ const btnSecondary = document.getElementById("btn_secondary");
 const modalInput = document.getElementById("modalInput");
 const btnApply = document.getElementById("btnApply");
 const list = document.getElementById("list");
-const btnSearch = document.getElementById("btnSearch");
+const inputSearch = document.getElementById("input_search");
 
 if (localStorage.toDoList) {
   let localStorageItems = JSON.parse(localStorage.toDoList);
@@ -84,14 +84,12 @@ function openInput() {
   modalInput.focus();
 }
 
-btnSearch.onclick = function () {
-  const inputSearch = document.getElementById("input_search");
-  inputSearchValue = inputSearch.value;
-  const toDoList = JSON.parse(localStorage.toDoList);
-
-  const filterList = toDoList.filter((toDoList) => {
-    console.log(toDo);
-    return toDoList.includes(inputSearchValue);
+inputSearch.addEventListener =
+  ("input",
+  function () {
+    inputSearchValue = inputSearch.value;
+    const toDoList = JSON.parse(localStorage.toDoList); //[{},{}]
+    const filterList = toDoList.filter((toDoList) => {
+      return toDoList === toDoList.value;
+    });
   });
-  console.log(filterList);
-};
