@@ -86,7 +86,8 @@ function openInput() {
 
 inputSearch.addEventListener =
   ("input",
-  function () {
+  function (e) {
+    console.log(e);
     inputSearchValue = inputSearch.value;
     const toDoList = JSON.parse(localStorage.toDoList); //[{},{}]
     const filterList = toDoList.filter((toDoList) => {
