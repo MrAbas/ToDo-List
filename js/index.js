@@ -7,20 +7,36 @@ const btnApply = document.getElementById("btnApply");
 const list = document.getElementById("list");
 const inputSearch = document.getElementById("input_search");
 
+const getListFromStorage = () => {
+  return JSON.parse(localStorage.toDoList);
+};
+
+const setListToStorage = (newArr) => {
+  localStorage.toDoList = JSON.stringify(newArr);
+};
+
+const getRandomInt = (max) => {
+  return Math.floor(Math.random() * max);
+};
+
+const addChildToList = (id, text) => {
+  list.insertAdjacentHTML(
+    "beforeend",
+    `<li id=${id} class="note">
+  <input type="checkbox" class="checkbox_note" />
+  <h2 class="text_note">${text}</h2>
+  <span class="btns-note">
+    <button class="btn_change"></button>
+    <button class="btn_deleted" onclick = "onDelete(${id})"></button>
+  </span>
+</li>`
+  );
+};
+
 if (localStorage.toDoList) {
-  let localStorageItems = JSON.parse(localStorage.toDoList);
+  let localStorageItems = getListFromStorage();
   for (let i = 0; i < localStorageItems.length; i++) {
-    list.insertAdjacentHTML(
-      "beforeend",
-      `<li id=${localStorageItems[i].id} class="note">
-    <input type="checkbox" class="checkbox_note" />
-    <h2 class="text_note">${localStorageItems[i].value}</h2>
-    <span class="btns-note">
-      <button class="btn_change"></button>
-      <button class="btn_deleted" onclick = "onDelete(${localStorageItems[i].id})"></button>
-    </span>
-  </li>`
-    );
+    addChildToList(localStorageItems[i].id, localStorageItems[i].value);
   }
 }
 
@@ -36,45 +52,29 @@ btnSecondary.onclick = function () {
   modal.style.display = "none";
 };
 
-const onDelete = (id) => {
+const onDelete = function (id) {
   const itemRemove = document.getElementById(id);
   itemRemove.remove();
-  const newItems = JSON.parse(localStorage.toDoList).filter((a) => {
-    return a.id !== Number(id);
+  const newArr = getListFromStorage().filter((toDoListItem) => {
+    return toDoListItem.id === Number(id);
   });
-  localStorage.toDoList = JSON.stringify(newItems);
+  setListToStorage(newArr);
 };
 
 btnApply.onclick = function () {
-  function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
-  }
-  const newId = getRandomInt(10000);
   const modalInputValue = modalInput.value;
-
-  list.insertAdjacentHTML(
-    "beforeend",
-    `<li id=${newId} class="note">
-  <input type="checkbox" class="checkbox_note" />
-  <h2 class="text_note">${modalInputValue}</h2>
-  <span class="btns-note">
-    <button class="btn_change"></button>
-    <button class="btn_deleted" onclick = "onDelete(${newId})"></button>
-  </span>
-</li>`
-  );
+  const newId = getRandomInt(10000);
+  addChildToList(newId, modalInputValue);
 
   modal.style.display = "none";
   modalInput.value = "";
 
   if (localStorage.toDoList) {
-    let toDo = JSON.parse(localStorage.toDoList);
+    let toDo = getListFromStorage();
     toDo.push({ id: newId, value: modalInputValue });
-    localStorage.toDoList = JSON.stringify(toDo);
+    setListToStorage(toDo);
   } else {
-    localStorage.toDoList = JSON.stringify([
-      { id: newId, value: modalInputValue },
-    ]);
+    setListToStorage([{ id: newId, value: modalInputValue }]);
   }
 };
 
@@ -85,11 +85,25 @@ function openInput() {
 }
 
 inputSearch.addEventListener("input", function (e) {
-  console.log(e);
-  inputSearchValue = inputSearch.value;
-  const toDoList = JSON.parse(localStorage.toDoList); //[{},{}]
-  const filterList = toDoList.filter((toDoList) => {
-    return toDoList === toDoList.value;
+  const inputSearchValue = e.target.value;
+  const filterList = getListFromStorage().filter((toDoListItem) => {
+    return toDoListItem.value.includes(inputSearchValue);
   });
-  console.log(filterList);
+  //удалить детей листа
+  while (list.firstChild) {
+    list.removeChild(list.firstChild);
+  }
+
+  if (filterList.length) {
+    for (let i = 0; i < filterList.length; i++) {
+      addChildToList(filterList[i].id, filterList[i].value);
+    }
+  } else {
+    if (localStorage.toDoList && inputSearchValue.length == 0) {
+      let localStorageItems = getListFromStorage();
+      for (let i = 0; i < localStorageItems.length; i++) {
+        addChildToList(localStorageItems[i].id, localStorageItems[i].value);
+      }
+    }
+  }
 });
