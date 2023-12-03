@@ -6,6 +6,7 @@ const modalInput = document.getElementById("modalInput");
 const btnApply = document.getElementById("btnApply");
 const list = document.getElementById("list");
 const inputSearch = document.getElementById("input_search");
+const backgroundList = document.querySelector(".background-list");
 
 const getListFromStorage = () => {
   return JSON.parse(localStorage.toDoList);
@@ -59,6 +60,11 @@ const onDelete = function (id) {
     return toDoListItem.id !== Number(id);
   });
   setListToStorage(newArr);
+
+  // если список пуст добавить флекс к диву
+  if (list.children.length === 1) {
+    backgroundList.style.display = "flex";
+  }
 };
 
 btnApply.onclick = function () {
@@ -75,6 +81,10 @@ btnApply.onclick = function () {
     setListToStorage(toDo);
   } else {
     setListToStorage([{ id: newId, value: modalInputValue }]);
+  }
+  //добавил хрень, если список дел пуст, то добавляется другая хрень.
+  if (list.children.length > 1) {
+    backgroundList.style.display = "none";
   }
 };
 
@@ -99,7 +109,7 @@ inputSearch.addEventListener("input", function (e) {
       addChildToList(filterList[i].id, filterList[i].value);
     }
   } else {
-    if (localStorage.toDoList && inputSearchValue.length == 0) {
+    if (localStorage.toDoList && inputSearchValue.length === 0) {
       let localStorageItems = getListFromStorage();
       for (let i = 0; i < localStorageItems.length; i++) {
         addChildToList(localStorageItems[i].id, localStorageItems[i].value);

@@ -124,6 +124,20 @@ ul li {
   min-height: 545px;
 }
 
+.background-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 545px;
+}
+
+.background-img {
+  max-width: 221px;
+  min-height: 174px;
+  margin-bottom: 20px;
+}
+
 .note {
   display: flex;
   width: 525px;
