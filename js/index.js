@@ -83,7 +83,7 @@ btnApply.onclick = function () {
     setListToStorage([{ id: newId, value: modalInputValue }]);
   }
   //добавил хрень, если список дел пуст, то добавляется другая хрень.
-  if (list.children.length > 1) {
+  if (list.children.length > 0) {
     backgroundList.style.display = "none";
   }
 };
@@ -150,6 +150,8 @@ function onBtnChange(id, text) {
           }
           return localItem
         }); */
+        input.focus();
+
         for (let i = 0; i < localItems.length; i++) {
           if (localItems[i].id === id) {
             localItems[i].value = e.target.value;
