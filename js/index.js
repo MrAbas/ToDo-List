@@ -9,7 +9,10 @@ const inputSearch = document.getElementById("input_search");
 const backgroundList = document.querySelector(".background-list");
 
 const getListFromStorage = () => {
-  return JSON.parse(localStorage.toDoList);
+  if (localStorage.toDoList) {
+    return JSON.parse(localStorage.toDoList);
+  }
+  return [];
 };
 
 const setListToStorage = (newArr) => {
@@ -33,12 +36,20 @@ const addChildToList = (id, text) => {
 </li>`
   );
 };
-
-if (localStorage.toDoList) {
+let localValue = getListFromStorage();
+if (localValue.length) {
   let localStorageItems = getListFromStorage();
-  for (let i = 0; i < localStorageItems.length; i++) {
+
+  /* for (let i = 0; i < localStorageItems.length; i++) {
     addChildToList(localStorageItems[i].id, localStorageItems[i].value);
-  }
+  } */
+  localStorageItems.forEach((e) => {
+    addChildToList(e.id, e.value);
+  });
+
+  backgroundList.style.display = "none";
+} else {
+  backgroundList.style.display = "flex";
 }
 
 btnAdd.onclick = function () {
@@ -56,9 +67,10 @@ btnSecondary.onclick = function () {
 const onDelete = function (id) {
   const itemRemove = document.getElementById(id);
   itemRemove.remove();
-  const newArr = getListFromStorage().filter((toDoListItem) => {
-    return toDoListItem.id !== Number(id);
+  const newArr = getListFromStorage().filter((localObj) => {
+    return localObj.id !== Number(id);
   });
+
   setListToStorage(newArr);
 
   // если список пуст добавить флекс к диву
@@ -105,15 +117,21 @@ inputSearch.addEventListener("input", function (e) {
   }
 
   if (filterList.length) {
-    for (let i = 0; i < filterList.length; i++) {
+    /* for (let i = 0; i < filterList.length; i++) {
       addChildToList(filterList[i].id, filterList[i].value);
-    }
+    } */
+    filterList.forEach((element) => {
+      addChildToList(element.id, element.value);
+    });
   } else {
     if (localStorage.toDoList && inputSearchValue.length === 0) {
       let localStorageItems = getListFromStorage();
-      for (let i = 0; i < localStorageItems.length; i++) {
+      /* for (let i = 0; i < localStorageItems.length; i++) {
         addChildToList(localStorageItems[i].id, localStorageItems[i].value);
-      }
+      } */
+      localStorageItems.forEach((element) => {
+        addChildToList(element.id, element.value);
+      });
     }
   }
 });
@@ -150,13 +168,16 @@ function onBtnChange(id, text) {
           }
           return localItem
         }); */
+        let arr = [{ name: "a" }, { name: "c" }, { name: "a" }];
+
         input.focus();
 
-        for (let i = 0; i < localItems.length; i++) {
-          if (localItems[i].id === id) {
-            localItems[i].value = e.target.value;
+        localItems.forEach((localItem) => {
+          if (localItem.id === id) {
+            localItem.value = e.target.value;
           }
-        }
+        });
+
         //3 меняем в нем текст на новый
         setListToStorage(localItems);
         //4 записываем в лк новый массив
