@@ -94,7 +94,7 @@ btnApply.onclick = function () {
   } else {
     setListToStorage([{ id: newId, value: modalInputValue }]);
   }
-  //добавил хрень, если список дел пуст, то добавляется другая хрень.
+  //добавил фоновое изображение, если список дел пуст, то добавляется другая фоновое изображение.
   if (list.children.length > 0) {
     backgroundList.style.display = "none";
   }
@@ -168,7 +168,6 @@ function onBtnChange(id, text) {
           }
           return localItem
         }); */
-        let arr = [{ name: "a" }, { name: "c" }, { name: "a" }];
 
         input.focus();
 
@@ -185,3 +184,23 @@ function onBtnChange(id, text) {
     });
   }
 }
+
+// Fetch
+async function getResponse() {
+  let response = await fetch(
+    "https://jsonplaceholder.typicode.com/users/1/todos"
+  );
+  let content = await response.json();
+  content = content.splice(0, 10);
+
+  /* for (let i = 0; i < content.length; i++) {
+    console.log(content[i]);
+  } */
+
+  let key;
+  for (key in content) {
+    addChildToList(content[key].id, content[key].title);
+  }
+}
+
+getResponse();

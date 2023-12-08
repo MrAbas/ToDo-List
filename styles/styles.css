@@ -140,10 +140,10 @@ ul li {
 
 .note {
   display: flex;
-  width: 525px;
-  max-height: 26px;
-  justify-content: space-around;
-  align-items: flex-end;
+  max-width: 525px;
+  min-height: 26px;
+  /* justify-content: space-around;
+  align-items: flex-end; */
 }
 
 .input_change {
@@ -159,6 +159,7 @@ ul li {
 .checkbox_note {
   width: 26px;
   min-height: 26px;
+  margin-right: 17px;
   border-radius: 2px;
   border: 1px solid var(--purple, #6c63ff);
   background: var(--purple, #6c63ff);
@@ -167,8 +168,9 @@ ul li {
 
 .text_note {
   display: inline-block;
-  width: 420px;
-  height: 20px;
+  max-width: 420px;
+  width: 100%;
+  min-height: 20px;
   margin: 0;
   color: var(--black, #252525);
   font-family: Kanit;
