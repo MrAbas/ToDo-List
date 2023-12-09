@@ -39,12 +39,10 @@ const addChildToList = (id, text) => {
 
 let localValue = getListFromStorage();
 if (localValue.length) {
-  let localStorageItems = getListFromStorage();
-
   /* for (let i = 0; i < localStorageItems.length; i++) {
     addChildToList(localStorageItems[i].id, localStorageItems[i].value);
   } */
-  localStorageItems.forEach((e) => {
+  localValue.forEach((e) => {
     addChildToList(e.id, e.value);
   });
 
@@ -188,19 +186,19 @@ function onBtnChange(id, text) {
 
 // Fetch 1 способ
 async function getResponse() {
-  let response = await fetch(
-    "https://jsonplaceholder.typicode.com/users/1/todos"
-  );
-  let content = await response.json();
-  content = content.splice(0, 10);
+  try {
+    const response = await fetch(
+      "https://jsonplaceholder.typicode.com/users/1/todos"
+    );
 
-  // for (let i = 0; i < content.length; i++) {
-  //   console.log(content[i]);
-  // }
+    let content = await response.json();
+    content = content.splice(0, 20);
 
-  let key;
-  for (key in content) {
-    addChildToList(content[key].id, content[key].title);
+    for (let item of content) {
+      addChildToList(item.id, item.title);
+    }
+  } catch (error) {
+    alert(error);
   }
 }
 
