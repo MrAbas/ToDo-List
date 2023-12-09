@@ -27,7 +27,7 @@ const addChildToList = (id, text) => {
   list.insertAdjacentHTML(
     "beforeend",
     `<li id=${id} class="note">
-  <input onclick = "doneNote(${id})" id="checkboxNote" type="checkbox" class="checkbox_note" />
+  <input onclick = "doneNote(${id})" id="${id}-checkbox" type="checkbox" class="checkbox_note" />
   <h2 id="${id}-text" class="text_note">${text}</h2>
   <span class="btns-note">
     <button onclick = "onBtnChange(${id}, ${text})" class="btn_change"></button>
@@ -64,7 +64,7 @@ btnSecondary.onclick = function () {
 };
 
 const doneNote = function (id) {
-  const checkboxNote = document.getElementById("checkboxNote");
+  const checkboxNote = document.getElementById(id + "-checkbox");
   const noteId = document.getElementById(id + "-text");
   if (checkboxNote.checked) {
     noteId.style.textDecoration = "line-through";
