@@ -164,7 +164,7 @@ function onBtnChange(id, text) {
     input.addEventListener("keydown", (e) => {
       //отслеживаем нажатие
       if (e.key === "Enter") {
-        openInput = false; //разрешили нажатие
+        inputOpen = false; //разрешили нажатие
         // если  Enter
         textValue.textContent = e.target.value;
         listItem.replaceChild(textValue, input); //меняем input на текст
