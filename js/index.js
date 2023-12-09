@@ -36,6 +36,7 @@ const addChildToList = (id, text) => {
 </li>`
   );
 };
+
 let localValue = getListFromStorage();
 if (localValue.length) {
   let localStorageItems = getListFromStorage();
@@ -185,7 +186,7 @@ function onBtnChange(id, text) {
   }
 }
 
-// Fetch
+// Fetch 1 способ
 async function getResponse() {
   let response = await fetch(
     "https://jsonplaceholder.typicode.com/users/1/todos"
@@ -193,9 +194,9 @@ async function getResponse() {
   let content = await response.json();
   content = content.splice(0, 10);
 
-  /* for (let i = 0; i < content.length; i++) {
-    console.log(content[i]);
-  } */
+  // for (let i = 0; i < content.length; i++) {
+  //   console.log(content[i]);
+  // }
 
   let key;
   for (key in content) {
@@ -204,3 +205,17 @@ async function getResponse() {
 }
 
 getResponse();
+
+/* //2 cпособ
+
+const getTodoFromPlaceHolder = async () => {
+  let response = await fetch(
+    "https://jsonplaceholder.typicode.com/users/1/todos"
+  );
+
+  if (response.ok) {
+    let json = await response.json();
+  } else {
+    console.log("Ошибка HTTP: " + response.status);
+  }
+}; */
