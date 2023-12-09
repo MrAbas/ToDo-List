@@ -27,7 +27,7 @@ const addChildToList = (id, text) => {
   list.insertAdjacentHTML(
     "beforeend",
     `<li id=${id} class="note">
-  <input type="checkbox" class="checkbox_note" />
+  <input onclick = "doneNote(${id})" id="checkboxNote" type="checkbox" class="checkbox_note" />
   <h2 id="${id}-text" class="text_note">${text}</h2>
   <span class="btns-note">
     <button onclick = "onBtnChange(${id}, ${text})" class="btn_change"></button>
@@ -63,6 +63,16 @@ btnSecondary.onclick = function () {
   modal.style.display = "none";
 };
 
+const doneNote = function (id) {
+  const checkboxNote = document.getElementById("checkboxNote");
+  const noteId = document.getElementById(id + "-text");
+  if (checkboxNote.checked) {
+    noteId.style.textDecoration = "line-through";
+  } else {
+    noteId.style.textDecoration = "none";
+  }
+};
+
 const onDelete = function (id) {
   const itemRemove = document.getElementById(id);
   itemRemove.remove();
@@ -88,10 +98,10 @@ btnApply.onclick = function () {
 
   if (localStorage.toDoList) {
     let toDo = getListFromStorage();
-    toDo.push({ id: newId, value: modalInputValue });
+    toDo.push({ id: newId, value: modalInputValue, check: false });
     setListToStorage(toDo);
   } else {
-    setListToStorage([{ id: newId, value: modalInputValue }]);
+    setListToStorage([{ id: newId, value: modalInputValue, check: false }]);
   }
   //добавил фоновое изображение, если список дел пуст, то добавляется другая фоновое изображение.
   if (list.children.length > 0) {
@@ -185,14 +195,14 @@ function onBtnChange(id, text) {
 }
 
 // Fetch 1 способ
-async function getResponse() {
+/* async function getResponse() {
   try {
     const response = await fetch(
       "https://jsonplaceholder.typicode.com/users/1/todos"
     );
 
     let content = await response.json();
-    content = content.splice(0, 20);
+    content = content.splice(0, 10);
 
     for (let item of content) {
       addChildToList(item.id, item.title);
@@ -202,7 +212,7 @@ async function getResponse() {
   }
 }
 
-getResponse();
+getResponse(); */
 
 /* //2 cпособ
 
