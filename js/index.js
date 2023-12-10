@@ -23,11 +23,13 @@ const getRandomInt = (max) => {
   return Math.floor(Math.random() * max);
 };
 
-const addChildToList = (id, text) => {
+const addChildToList = (id, text, checked) => {
   list.insertAdjacentHTML(
     "beforeend",
     `<li id=${id} class="note">
-  <input onclick = "doneNote(${id})" id="${id}-checkbox" type="checkbox" class="checkbox_note" />
+  <input ${
+    checked ? "checked" : ""
+  } onclick = "doneNote(${id})" id="${id}-checkbox" type="checkbox" class="checkbox_note" />
   <h2 id="${id}-text" class="text_note">${text}</h2>
   <span class="btns-note">
     <button onclick = "onBtnChange(${id}, ${text})" class="btn_change"></button>
@@ -43,7 +45,7 @@ if (localValue.length) {
     addChildToList(localStorageItems[i].id, localStorageItems[i].value);
   } */
   localValue.forEach((e) => {
-    addChildToList(e.id, e.value);
+    addChildToList(e.id, e.value, e.checked);
   });
 
   backgroundList.style.display = "none";
@@ -98,10 +100,10 @@ btnApply.onclick = function () {
 
   if (localStorage.toDoList) {
     let toDo = getListFromStorage();
-    toDo.push({ id: newId, value: modalInputValue, check: false });
+    toDo.push({ id: newId, value: modalInputValue, checked: false });
     setListToStorage(toDo);
   } else {
-    setListToStorage([{ id: newId, value: modalInputValue, check: false }]);
+    setListToStorage([{ id: newId, value: modalInputValue, checked: false }]);
   }
   //добавил фоновое изображение, если список дел пуст, то добавляется другая фоновое изображение.
   if (list.children.length > 0) {

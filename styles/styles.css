@@ -140,6 +140,7 @@ ul li {
 
 .note {
   display: flex;
+  align-items: center;
   max-width: 525px;
   min-height: 26px;
   /* justify-content: space-around;
