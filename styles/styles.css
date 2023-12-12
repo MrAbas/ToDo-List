@@ -181,6 +181,10 @@ ul li {
   line-height: 100%; /* 20px */
 }
 
+.text_checked {
+  text-decoration: line-through;
+}
+
 .btns-note {
   display: flex;
   width: 62px;

@@ -7,6 +7,7 @@ const btnApply = document.getElementById("btnApply");
 const list = document.getElementById("list");
 const inputSearch = document.getElementById("input_search");
 const backgroundList = document.querySelector(".background-list");
+const dropDown = document.getElementById("dropdown");
 
 const getListFromStorage = () => {
   if (localStorage.toDoList) {
@@ -30,9 +31,11 @@ const addChildToList = (id, text, checked) => {
   <input ${
     checked ? "checked" : ""
   } onclick = "doneNote(${id})" id="${id}-checkbox" type="checkbox" class="checkbox_note" />
-  <h2 id="${id}-text" class="text_note">${text}</h2>
+  <h2 id="${id}-text" class="text_note ${
+      checked ? "text_checked" : ""
+    }">${text}</h2>
   <span class="btns-note">
-    <button onclick = "onBtnChange(${id}, ${text})" class="btn_change"></button>
+    <button onclick = "onBtnChange(${id})" class="btn_change"></button>
     <button class="btn_deleted" onclick = "onDelete(${id})"></button>
   </span>
 </li>`
@@ -67,11 +70,18 @@ btnSecondary.onclick = function () {
 
 const doneNote = function (id) {
   const checkboxNote = document.getElementById(id + "-checkbox");
+  const localToDo = getListFromStorage().map((toDo) => {
+    if (toDo.id === id) {
+      toDo.checked = !toDo.checked;
+    }
+    return toDo;
+  });
+  setListToStorage(localToDo);
   const noteId = document.getElementById(id + "-text");
   if (checkboxNote.checked) {
-    noteId.style.textDecoration = "line-through";
+    noteId.classList.add("text_checked");
   } else {
-    noteId.style.textDecoration = "none";
+    noteId.classList.remove("text_checked");
   }
 };
 
@@ -149,7 +159,7 @@ inputSearch.addEventListener("input", function (e) {
 
 let inputOpen = false; // следим за нажатием
 
-function onBtnChange(id, text) {
+function onBtnChange(id) {
   if (inputOpen === false) {
     //проверка было ли нажатие
     const textValue = document.getElementById(id + "-text");
