@@ -80,7 +80,7 @@ ul li {
 
 .btn-search {
   position: absolute;
-  background: white;
+  background: transparent;
   border: none;
   left: 560px;
   top: 7px;

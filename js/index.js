@@ -239,3 +239,60 @@ const getTodoFromPlaceHolder = async () => {
     console.log("Ошибка HTTP: " + response.status);
   }
 }; */
+
+dropDown.addEventListener("change", function (e) {
+  let toDoList = getListFromStorage();
+  switch (e.target.value) {
+    case "Complete":
+      toDoList = toDoList.filter((toDo) => toDo.checked);
+      while (list.firstChild) {
+        list.removeChild(list.firstChild);
+      }
+      toDoList.forEach((element) => {
+        addChildToList(element.id, element.value, element.checked);
+      });
+      break;
+    case "Incomplete":
+      toDoList = toDoList.filter((toDo) => !toDo.checked);
+      while (list.firstChild) {
+        list.removeChild(list.firstChild);
+      }
+      toDoList.forEach((element) => {
+        addChildToList(element.id, element.value, element.checked);
+      });
+      break;
+    default:
+      while (list.firstChild) {
+        list.removeChild(list.firstChild);
+      }
+      toDoList.forEach((element) => {
+        addChildToList(element.id, element.value, element.checked);
+      });
+      break;
+  }
+
+  /* if (e.target.value === "Complete") {
+    toDoList = toDoList.filter((toDo) => toDo.checked);
+    while (list.firstChild) {
+      list.removeChild(list.firstChild);
+    }
+    toDoList.forEach((element) => {
+      addChildToList(element.id, element.value, element.checked);
+    });
+  } else if (e.target.value === "Incomplete") {
+    toDoList = toDoList.filter((toDo) => !toDo.checked);
+    while (list.firstChild) {
+      list.removeChild(list.firstChild);
+    }
+    toDoList.forEach((element) => {
+      addChildToList(element.id, element.value, element.checked);
+    });
+  } else {
+    while (list.firstChild) {
+      list.removeChild(list.firstChild);
+    }
+    toDoList.forEach((element) => {
+      addChildToList(element.id, element.value, element.checked);
+    });
+  } */
+});
