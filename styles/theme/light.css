@@ -1,0 +1,19 @@
+:root {
+  /* light theme tokens */
+  --background-primary-light: white;
+  --image-cursor-light: url("../../img/cursor_light.png");
+  --color--title-light: #252525;
+  --color--borderInput-light: #6c63ff;
+  --color--placeHolder-input-light: #c3c1e5;
+  --backgroundImg-themeBtn-light: url("../../img/theme_img.png");
+}
+
+/* map tokens to proper theme */
+[data-theme="light"] {
+  --background-primary: var(--background-primary-light);
+  --image-cursor: var(--image-cursor-light);
+  --color--title: var(--color--title-light);
+  --color--borderInput: var(--color--borderInput-light);
+  --color--placeHolder-input: var(--color--placeHolder-input-light);
+  --backgroundImg-themeBtn: var(--backgroundImg-themeBtn-light);
+}

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,7 +15,7 @@
     <script src="./js/index.js" defer></script>
   </head>
   <body>
-    <div class="container" data-bs-theme="dark">
+    <div class="container">
       <header class="header">
         <h1 class="title_header">TODO LIST</h1>
         <div class="setting_note">
@@ -36,12 +36,21 @@
             <option value="Complete">Complete</option>
             <option value="Incomplete">Incomplete</option>
           </select>
-          <button class="theme_btn">
-            <img style="height: 100%" src="./img/theme_img.png" alt="#" />
-          </button>
+          <button id="theme" class="theme_btn"></button>
         </div>
       </header>
       <main class="main">
+        <nav aria-label="...">
+          <ul id="pagination_list" class="pagination pagination-sm">
+            <!-- <li class="page-item active" aria-current="page">
+              <span class="page-link">1</span>
+            </li>
+            <li class="page-item" id="page2">
+              <a class="page-link" href="#">2</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+          </ul>
+        </nav>
         <ul id="list" class="list">
           <li class="background-list">
             <img

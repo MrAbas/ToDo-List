@@ -8,6 +8,18 @@ const list = document.getElementById("list");
 const inputSearch = document.getElementById("input_search");
 const backgroundList = document.querySelector(".background-list");
 const dropDown = document.getElementById("dropdown");
+const buttonTheme = document.getElementById("theme");
+const pagination = 2;
+const paginationList = document.getElementById("pagination_list");
+
+buttonTheme.onclick = () => {
+  const theme = document.documentElement.getAttribute("data-theme");
+  if (theme === "dark") {
+    document.documentElement.setAttribute("data-theme", "light");
+  } else {
+    document.documentElement.setAttribute("data-theme", "dark");
+  }
+};
 
 const getListFromStorage = () => {
   if (localStorage.toDoList) {
@@ -44,12 +56,45 @@ const addChildToList = (id, text, checked) => {
 
 let localValue = getListFromStorage();
 if (localValue.length) {
-  /* for (let i = 0; i < localStorageItems.length; i++) {
-    addChildToList(localStorageItems[i].id, localStorageItems[i].value);
-  } */
-  localValue.forEach((e) => {
+  for (let i = 0; i < pagination; i++) {
+    addChildToList(
+      localValue[i].id,
+      localValue[i].value,
+      localValue[i].checked
+    );
+  }
+
+  for (let i = 0; i < localValue.length / pagination; i++) {
+    paginationList.insertAdjacentHTML(
+      "beforeend",
+      `<li id="${i}-page" class="page-item ${
+        i === 0 ? "active" : ""
+      }" aria-current="page" onclick = "onPaginationChange(${i})">
+    <span class="page-link">${i + 1}</span>
+  </li>`
+    );
+  }
+
+  function onPaginationChange(id) {
+    let page = id;
+    if (id > 0) {
+      page = id * pagination;
+    }
+    while (list.firstChild) {
+      list.removeChild(list.firstChild);
+    }
+    for (let i = page; i < page + pagination; i++) {
+      addChildToList(
+        localValue[i].id,
+        localValue[i].value,
+        localValue[i].checked
+      );
+    }
+  }
+
+  /* localValue.forEach((e) => {
     addChildToList(e.id, e.value, e.checked);
-  });
+  }); */
 
   backgroundList.style.display = "none";
 } else {
@@ -170,6 +215,7 @@ function onBtnChange(id) {
     input.placeholder = textValue.textContent;
 
     listItem.replaceChild(input, textValue); //меняем текст на input
+    input.focus();
 
     inputOpen = true; //запретили повторное нажатие
 
@@ -189,8 +235,6 @@ function onBtnChange(id) {
           }
           return localItem
         }); */
-
-        input.focus();
 
         localItems.forEach((localItem) => {
           if (localItem.id === id) {

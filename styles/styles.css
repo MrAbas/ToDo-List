@@ -1,3 +1,11 @@
+@import url("./theme/dark.css");
+@import url("./theme/light.css");
+
+body {
+  background-color: var(--background-primary);
+  cursor: var(--image-cursor), auto;
+}
+
 html {
   box-sizing: border-box;
   width: 100%;
@@ -45,7 +53,7 @@ ul li {
 .title_header {
   display: flex;
   justify-content: center;
-  color: var(--black, #252525);
+  color: var(--color--title);
   font-family: Kanit;
   font-size: 26px;
   font-style: normal;
@@ -71,7 +79,11 @@ ul li {
   width: 595px;
   min-height: 38px;
   border-radius: 5px;
-  border: 1px solid var(--purple, #6c63ff);
+  border: 1px solid var(--color--borderInput);
+}
+
+.input_search::-webkit-input-placeholder {
+  color: var(--color--placeHolder-input);
 }
 
 .setting_note {
@@ -93,7 +105,7 @@ ul li {
   min-height: 38px;
   padding: 10px;
   border-radius: 5px;
-  background: var(--purple, #6c63ff);
+  background: #6c63ff;
   color: var(--white, #f7f7f7);
   font-family: Kanit;
   font-size: 18px;
@@ -105,11 +117,14 @@ ul li {
 }
 
 .theme_btn {
-  background-color: white;
+  background-color: transparent;
+  background-image: var(--backgroundImg-themeBtn);
   border: none;
   padding: 0;
   max-width: 38px;
+  width: 100%;
   min-height: 38px;
+  height: 100%;
 }
 
 .main {
@@ -193,7 +208,7 @@ ul li {
 }
 
 .btn_change {
-  background-color: white;
+  background-color: transparent;
   border: none;
   background-image: url("../img/change_img.svg");
   width: 18px;
@@ -201,7 +216,7 @@ ul li {
 }
 
 .btn_deleted {
-  background-color: white;
+  background-color: transparent;
   border: none;
   background-image: url("../img/deleted_img.svg");
   width: 18px;
@@ -216,7 +231,7 @@ ul li {
   background-repeat: no-repeat;
   background-position: center;
   border: none;
-  background-color: white;
+  background-color: transparent;
   padding: 0;
   bottom: 120px;
   right: 15px;

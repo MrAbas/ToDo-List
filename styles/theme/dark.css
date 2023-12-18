@@ -1,0 +1,18 @@
+:root {
+  /* dark theme tokens */
+  --background-primary-dark: #252525;
+  --image-cursor-dark: url("../../img/cursor_dark.png");
+  --color--title-dark: #f7f7f7;
+  --color--borderInput-dark: #f7f7f7;
+  --color--placeHolder-input-dark: #666;
+  --backgroundImg-themeBtn-dark: url("../../img/theme_img2.png");
+}
+
+[data-theme="dark"] {
+  --background-primary: var(--background-primary-dark);
+  --image-cursor: var(--image-cursor-dark);
+  --color--title: var(--color--title-dark);
+  --color--borderInput: var(--color--borderInput-dark);
+  --color--placeHolder-input: var(--color--placeHolder-input-dark);
+  --backgroundImg-themeBtn: var(--backgroundImg-themeBtn-dark);
+}
