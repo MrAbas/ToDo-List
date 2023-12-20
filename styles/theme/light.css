@@ -6,6 +6,9 @@
   --color--borderInput-light: #6c63ff;
   --color--placeHolder-input-light: #c3c1e5;
   --backgroundImg-themeBtn-light: url("../../img/theme_img.png");
+  --colorText-light: #252525;
+  --background-image-light: url("../../img/back_list.svg");
+  --borderColor-light: #f7f7f7;
 }
 
 /* map tokens to proper theme */
@@ -16,4 +19,7 @@
   --color--borderInput: var(--color--borderInput-light);
   --color--placeHolder-input: var(--color--placeHolder-input-light);
   --backgroundImg-themeBtn: var(--backgroundImg-themeBtn-light);
+  --colorText: var(--colorText-light);
+  --background-image: var(--background-image-light);
+  --borderColor: var(--borderColor-light);
 }

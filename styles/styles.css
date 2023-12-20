@@ -3,7 +3,6 @@
 
 body {
   background-color: var(--background-primary);
-  cursor: var(--image-cursor), auto;
 }
 
 html {
@@ -149,8 +148,14 @@ ul li {
 
 .background-img {
   max-width: 221px;
+  width: 100%;
   min-height: 174px;
+  height: 100%;
   margin-bottom: 20px;
+  background-image: var(--background-image);
+}
+.background-text {
+  color: var(--colorText);
 }
 
 .note {
@@ -188,7 +193,7 @@ ul li {
   width: 100%;
   min-height: 20px;
   margin: 0;
-  color: var(--black, #252525);
+  color: var(--colorText);
   font-family: Kanit;
   font-size: 20px;
   font-style: normal;
@@ -237,6 +242,11 @@ ul li {
   right: 15px;
 }
 
+.modal-content {
+  background-color: var(--background-primary);
+  border: 1px solid var(--borderColor);
+}
+
 .modal-header {
   display: flex;
   justify-content: flex-end;
@@ -244,7 +254,7 @@ ul li {
 }
 
 .modal-title {
-  color: var(--black, #252525);
+  color: var(--colorText);
   font-family: Kanit;
   font-size: 24px;
   font-style: normal;
@@ -264,7 +274,8 @@ ul li {
   height: 38px;
   padding: 8px 16px;
   border-radius: 5px;
-  border: 1px solid var(--purple, #6c63ff);
+  border: 1px solid var(--color--borderInput);
+  background-color: transparent;
 }
 
 .modal_input::placeholder {
@@ -293,7 +304,7 @@ ul li {
 .btn-secondary {
   padding: 10px 22px;
   border-radius: 5px;
-  background: white;
+  background: transparent;
   color: #6c63ff;
   border-radius: 5px;
   border: 1px solid var(--purple, #6c63ff);

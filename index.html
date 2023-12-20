@@ -12,7 +12,12 @@
     />
     <link rel="stylesheet" href="./styles/normalize.css" />
     <link rel="stylesheet" href="./styles/styles.css" />
+    <script src="./js/variables.js" defer></script>
+    <script src="./js/helpers.js" defer></script>
+    <script src="./js/utils.js" defer></script>
     <script src="./js/index.js" defer></script>
+    <script src="./js/theme.js" defer></script>
+    <script src="./js/pagination.js" defer></script>
   </head>
   <body>
     <div class="container">
@@ -53,12 +58,8 @@
         </nav>
         <ul id="list" class="list">
           <li class="background-list">
-            <img
-              class="background-img"
-              src="./img/back_list.svg"
-              alt="Empty img"
-            />
-            <h2>Empty...</h2>
+            <div class="background-img"></div>
+            <h2 class="background-text">Empty...</h2>
           </li>
           <!-- <li id=list_item class="note">
             <input type="checkbox" class="checkbox_note" />
