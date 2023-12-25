@@ -8,20 +8,23 @@ const list = document.getElementById("list");
 const inputSearch = document.getElementById("input_search");
 const backgroundList = document.querySelector(".background-list");
 const dropDown = document.getElementById("dropdown");
+dayjs.locale("ru"); // use locale globally
 
 const addChildToList = (id, text, checked) => {
+  let now = dayjs().format("DD MMMM dddd YYYY, HH:mm");
   list.insertAdjacentHTML(
     "beforeend",
     `<li id=${id} class="note">
   <input ${
     checked ? "checked" : ""
   } onclick = "doneNote(${id})" id="${id}-checkbox" type="checkbox" class="checkbox_note" />
-  <h2 id="${id}-text" class="text_note ${
+  <h2 data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="left" data-bs-title="${now}" id="${id}-text" class="text_note ${
       checked ? "text_checked" : ""
-    }">${text}</h2>
+    }">${text} </h2>
   <span class="btns-note">
     <button onclick = "onBtnChange(${id})" class="btn_change"></button>
     <button class="btn_deleted" onclick = "onDelete(${id})"></button>
+    <button id="time" class="time_btn"></button>
   </span>
 </li>`
   );

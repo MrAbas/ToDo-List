@@ -29,7 +29,7 @@ const addChildToList = (id, text, checked) => {
   );
 };
 
-//                                 ВЫВОД С TODO ИЗ LOCALSTORAGE
+//                                 ВЫВОД С TODO ИЗ LOCAL STORAGE
 let localValue = getListFromStorage();
 if (localValue.length) {
   for (let i = 0; i < (localValue.length === 1 ? 1 : pagination); i++) {
@@ -252,7 +252,7 @@ function onBtnChange(id) {
 
 getResponse(); */
 
-/* //2 cпособ
+/* //2 способ
 
 const getTodoFromPlaceHolder = async () => {
   let response = await fetch(

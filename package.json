@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "date.js": "^0.3.3",
+    "moment": "^2.29.4"
+  }
+}
