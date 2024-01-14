@@ -8,7 +8,7 @@ const list = document.getElementById("list");
 const inputSearch = document.getElementById("input_search");
 const backgroundList = document.querySelector(".background-list");
 const dropDown = document.getElementById("dropdown");
-let pagination = 2;
+let pagination = 3;
 const paginationList = document.getElementById("pagination_list");
 
 const addChildToList = (id, text, checked) => {
@@ -32,7 +32,7 @@ const addChildToList = (id, text, checked) => {
 //                                 ВЫВОД С TODO ИЗ LOCAL STORAGE
 let localValue = getListFromStorage();
 if (localValue.length) {
-  for (let i = 0; i < (localValue.length === 1 ? 1 : pagination); i++) {
+  for (let i = 0; i < (localValue.length === 1 ? 1 : 5); i++) {
     addChildToList(
       localValue[i].id,
       localValue[i].value,

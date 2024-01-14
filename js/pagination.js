@@ -15,10 +15,10 @@ if (localValue.length) {
     );
   }
 
-  function onPaginationChange(id) {
-    let page = id;
-    if (id > 0) {
-      page = id * pagination;
+  function onPaginationChange(index) {
+    let page = index;
+    if (index > 0) {
+      page = index * pagination;
     }
     while (list.firstChild) {
       list.removeChild(list.firstChild);
@@ -30,5 +30,10 @@ if (localValue.length) {
         localValue[i].checked
       );
     }
+    const paginationPages = document.querySelectorAll(".page-item");
+    for (let i = 0; i < paginationPages.length; i++) {
+      paginationPages[i].classList.remove("active");
+    }
+    document.getElementById(`${index}-page`).classList.add("active");
   }
 }

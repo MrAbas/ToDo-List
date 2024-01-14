@@ -75,7 +75,7 @@ ul li {
 }
 
 .input_search {
-  width: 565px;
+  width: 603px;
   min-height: 38px;
   border-radius: 5px;
   border: 1px solid var(--color--borderInput);
@@ -93,7 +93,7 @@ ul li {
   position: absolute;
   background: transparent;
   border: none;
-  left: 535px;
+  left: 567px;
   top: 7px;
   bottom: 4px;
   padding: 0;

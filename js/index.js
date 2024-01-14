@@ -10,8 +10,9 @@ const backgroundList = document.querySelector(".background-list");
 const dropDown = document.getElementById("dropdown");
 dayjs.locale("ru"); // use locale globally
 
-const addChildToList = (id, text, checked) => {
-  let now = dayjs().format("DD MMMM dddd YYYY, HH:mm");
+let localValue = getListFromStorage();
+
+const addChildToList = (id, text, checked, now) => {
   list.insertAdjacentHTML(
     "beforeend",
     `<li id=${id} class="note">
@@ -24,23 +25,49 @@ const addChildToList = (id, text, checked) => {
   <span class="btns-note">
     <button onclick = "onBtnChange(${id})" class="btn_change"></button>
     <button class="btn_deleted" onclick = "onDelete(${id})"></button>
-    <button id="time" class="time_btn"></button>
+    <button  id="${id}-time" class="time_btn"></button>
   </span>
 </li>`
   );
+
+  $(`#${id}-time`)
+    .datepicker({
+      autoclose: true,
+    })
+    .on("changeDate", function (e) {
+      const myData = $(`#${id}-time`).datepicker("getFormattedDate");
+
+      document
+        .getElementById(`${id}-text`)
+        .setAttribute("data-bs-title", myData);
+
+      resetTooltip();
+
+      setListToStorage(
+        localValue.map((item) => {
+          if (item.id === id) {
+            item.now = myData;
+          }
+          return item;
+        })
+      );
+      //новый массив записать в локал setListToStorage
+    });
 };
 
 //                                 ВЫВОД С TODO ИЗ LOCAL STORAGE
-let localValue = getListFromStorage();
+
 if (localValue.length) {
   for (let i = 0; i < (localValue.length === 1 ? 1 : pagination); i++) {
     addChildToList(
       localValue[i].id,
       localValue[i].value,
-      localValue[i].checked
+      localValue[i].checked,
+      localValue[i].now
     );
   }
 }
+resetTooltip();
 
 //                                 ВЫВОД КАРТИНКИ, ЕСЛИ НЕТ TODO
 if (localValue.length) {
