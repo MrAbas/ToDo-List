@@ -111,6 +111,7 @@ const doneNote = function (id) {
   }
 };
 
+//                                 УДАЛЕНИЕ TODO
 const onDelete = function (id) {
   const itemRemove = document.getElementById(id);
   itemRemove.remove();
