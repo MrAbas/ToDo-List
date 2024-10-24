@@ -55,7 +55,7 @@ const addChildToList = (id, text, checked, now) => {
     });
 };
 
-//                                 ВЫВОД С TODO ИЗ LOCAL STORAGE
+//                                 ВЫВОД TODO ИЗ LOCAL STORAGE
 
 if (localValue.length) {
   for (let i = 0; i < (localValue.length === 1 ? 1 : pagination); i++) {
@@ -150,7 +150,7 @@ btnApply.onclick = function () {
 };
 
 //                                 ФИЛЬТР TODO
-inputSearch.addEventListener("input", function (e) {
+/* inputSearch.addEventListener("input", function (e) {
   const inputSearchValue = e.target.value;
   const filterList = getListFromStorage().filter((toDoListItem) => {
     return toDoListItem.value.includes(inputSearchValue);
@@ -172,7 +172,99 @@ inputSearch.addEventListener("input", function (e) {
       });
     }
   }
+}); */
+
+//                             Фильтр TODO с Debounce
+
+const updateDebounceText = debounce(text => {
+  const inputSearchValue = text;
+  const filterList = getListFromStorage().filter((toDoListItem) => {
+    return toDoListItem.value.includes(inputSearchValue);
+  });
+  //удалить детей листа
+  while (list.firstChild) {
+    list.removeChild(list.firstChild);
+  }
+
+  if (filterList.length) {
+    filterList.forEach((element) => {
+      addChildToList(element.id, element.value);
+    });
+  } else {
+    if (localStorage.toDoList && inputSearchValue.length === 0) {
+      let localStorageItems = getListFromStorage();
+      localStorageItems.forEach((element) => {
+        addChildToList(element.id, element.value);
+      });
+    }
+  }
+  })
+
+inputSearch.addEventListener("input", function (e) {
+  const inputSearchValue = e.target.value;
+  updateDebounceText(inputSearchValue);
+  
 });
+
+function debounce(callBack, delay = 1000) {
+  let timeout;
+  return (...arg) => {
+    clearTimeout(timeout)
+    timeout = setTimeout(()=> {
+      callBack(...arg)
+    }, delay)
+  }
+}
+
+
+
+//                             Фильтр TODO с Throttle
+
+/* const updateThrottleText = throttle(text => {
+  const inputSearchValue = text;
+  const filterList = getListFromStorage().filter((toDoListItem) => {
+    return toDoListItem.value.includes(inputSearchValue);
+  });
+  //удалить детей листа
+  while (list.firstChild) {
+    list.removeChild(list.firstChild);
+  }
+
+  if (filterList.length) {
+    filterList.forEach((element) => {
+      addChildToList(element.id, element.value);
+    });
+  } else {
+    if (localStorage.toDoList && inputSearchValue.length === 0) {
+      let localStorageItems = getListFromStorage();
+      localStorageItems.forEach((element) => {
+        addChildToList(element.id, element.value);
+      });
+    }
+  }
+  }, 250)
+
+inputSearch.addEventListener("input", function (e) {
+  const inputSearchValue = e.target.value;
+  updateThrottleText(inputSearchValue);
+  
+});
+
+function throttle(callBack, delay = 2000) {
+  let isPaused = false;
+
+  return (...arg) => {
+    if(isPaused) return;
+
+   callBack(...arg);
+   isPaused = true;
+
+   setTimeout(() => {
+    isPaused = false;
+   }, delay);
+  }
+} */
+
 
 //                                 РЕДАКТИРОВАНИЕ TODO
 let inputOpen = false; // следим за нажатием
